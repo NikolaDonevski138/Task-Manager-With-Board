@@ -1,6 +1,8 @@
 import React from "react"
 import Board from "react-trello"
 import PieChart from "react-minimal-pie-chart"
+import { dodavanjeNaProekt } from "../actions/board"
+import { connect } from "react-redux"
 const data = {
   lanes: [
     {
@@ -38,6 +40,24 @@ const data = {
   ]
 }
 
+class Statusi extends React.Component {
+  renderList = () => {
+    return this.props.board.map(boardcard => {
+      return boardcard
+    })
+  }
+  render() {
+    console.log("proekti", this.props.board)
+    return (
+      <div>
+        <Board data={this.renderList()} editable={true} draggable={true}>
+          {/* {props.children} */}
+        </Board>
+      </div>
+    )
+  }
+}
+
 const Forma = () => {
   return (
     <div>
@@ -49,15 +69,6 @@ const Forma = () => {
   )
 }
 
-const Statusi = props => {
-  return (
-    <div>
-      <Board data={data} editable={true} draggable={true}>
-        {/* {props.children} */}
-      </Board>
-    </div>
-  )
-}
 // const stylesZaPiechart = {
 //   backgroundColor: "blue",
 //   padding: "-200%",
@@ -96,5 +107,8 @@ const TeamLeader = () => {
     </div>
   )
 }
+const mapStateToProps = state => {
+  return { board: state.board } //users: selectUsers(state.users,state.filters)
+}
 
-export default TeamLeader
+export default connect(mapStateToProps)(TeamLeader) //(UserList)
