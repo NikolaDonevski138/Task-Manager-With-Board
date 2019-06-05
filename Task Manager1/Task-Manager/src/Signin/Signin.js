@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import Particles from 'react-particles-js';
+import { connect } from "react-redux"
+import apiCall from '../api/apiCall';
+
 function Signin({ auth, setAuth }) {
   const onSubmit = e => {
     e.preventDefault()
@@ -18,6 +21,17 @@ function Signin({ auth, setAuth }) {
     }
   }
   if (auth.isAuth) {
+    // props.dispatch(
+    //   apiCall(
+    //     props.dispatch,
+    //     'signIn',
+    //     {
+    //       korisnickoIme: 'korisnik1',
+    //       lozinka: 'lozinka123'
+    //     },
+    //     ''
+    //   )
+    // );
     console.log('SOMETHING');
     return <Redirect to="/UserDashboardPage" exact={true} />
   }
@@ -71,4 +85,4 @@ function Signin({ auth, setAuth }) {
   )
 }
 
-export default Signin
+export default connect()(Signin);
