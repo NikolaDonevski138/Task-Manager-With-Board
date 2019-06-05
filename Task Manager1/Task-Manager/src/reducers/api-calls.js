@@ -1,4 +1,10 @@
-const usersReducerDefaultState = {};
+const usersReducerDefaultState = {
+    allEmployees: {
+        isLoading: false,
+        isLoaded: false,
+        isError: false,
+    },
+};
 
 const apiCalls = (state = usersReducerDefaultState, action) => {
     switch (action.type) {
@@ -10,6 +16,8 @@ const apiCalls = (state = usersReducerDefaultState, action) => {
                 isLoaded: true,
                 isError: false,
             };
+            //state.set(action.stateKey, action.response);
+            console.log('STATE FROM API CALL FINISHED', state);
             return state;
         case 'API_CALL_ERROR':
             state[action.stateKey] = action.error;
@@ -25,6 +33,7 @@ const apiCalls = (state = usersReducerDefaultState, action) => {
                 isLoading: true,
                 isLoaded: false,
                 isError: false,
+                // data: [],
             };
             return state;
         default:

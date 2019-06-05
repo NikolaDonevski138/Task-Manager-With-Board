@@ -18,7 +18,7 @@ const store = configureStore()
 console.log(store.getState())
 const jsx = (
   <Provider store={store}>
-    <AppRouter />
+    <AppRouter state={store.getState()} />
   </Provider>
 )
 

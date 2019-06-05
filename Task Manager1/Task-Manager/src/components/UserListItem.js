@@ -4,20 +4,22 @@ import moment from "moment"
 import numeral from "numeral"
 
 const UserListItem = ({
-  id,
+  id_vraboten,
+  Ime,
+  Prezime,
+  Grad,
+  Adresa,
   amount,
   createdAt,
   email,
   note,
-  ime,
-  prezime,
   oddel,
   proekt
 }) => (
   <div>
-    <Link className="list-item" to={`/edit/${id}`}>
+    <Link className="list-item" to={`/edit/${id_vraboten}`}>
       <div>
-        <h3 className="list-item__title">{ime + " " + prezime}</h3>
+        <h3 className="list-item__title">{Ime + " " + Prezime}</h3>
         <span className="list-item__sub-title">
           {moment(createdAt).format("MMMM Do,YYYY")}
         </span>
